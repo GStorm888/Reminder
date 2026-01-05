@@ -16,19 +16,31 @@ def register_handlers(bot: TeleBot):
         except:
             return False
         
-    #test function(get all DB or remove keyboard)
+    #test function(get all DB or remove keyboard or delete accont(by user_name))
     @bot.message_handler(commands=["test"])
     def test(message):
         if message.text == "🔙Back" or message.text == "back":
             handle_button(message)
             return
+        
         Database.create_table()
         all_users = Database.get_all_users()
-        print(all_users)
+        print("users: ", all_users)
+
         all_reminders = Database.get_all_reminder()
-        print(all_reminders)
+        print("remonders: ", all_reminders)
+
+        now = datetime.datetime.now()
+        print("now: ", now)
+
+        #remove keyboard
         # markup = types.ReplyKeyboardRemove()
         # bot.send_message(message.chat.id, """keyboard is remove""", reply_markup=markup)
+
+        #delete account
+        # telegram_id = str(message.chat.id)
+        # User = Database.get_user_by_telegram_id(telegram_id)
+        # Database.delete_account(User.user_name)
 
     #choose day
     @bot.callback_query_handler(
@@ -69,7 +81,7 @@ def register_handlers(bot: TeleBot):
             bot.send_message(message.chat.id, """OK,  Sunday""")
             day_reminder = 6
         bot.delete_message(message.chat.id, message.message_id)
-        bot.send_message(message.chat.id, """В какое время?""")
+        bot.send_message(message.chat.id, """what time?""")
         bot.register_next_step_handler(message, processing_time_reminder)
 
     #delete reminder by day and time
