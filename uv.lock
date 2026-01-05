@@ -1,0 +1,20 @@
+version = 1
+revision = 2
+requires-python = ">=3.13"
+
+[[package]]
+name = "06-01-2025"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "telebotapi" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "telebotapi", specifier = ">=0.9.9.3" }]
+
+[[package]]
+name = "telebotapi"
+version = "0.9.9.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/75/d7/e4e76a3459bb7682a02e27ff0d5baece4f1db1eadfceffd889018862f0ce/telebotapi-0.9.9.3.tar.gz", hash = "sha256:cf393ae94c543a6779e71d2bcae430230017f0f4d7e854e12fd0a25afd20f4d4", size = 20670, upload-time = "2023-03-14T01:27:15.749Z" }
